@@ -1,0 +1,61 @@
+/* --- Body backgrounds per page --- */
+body.login-page {
+    background-image: url('../images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff; /* Text color */
+}
+
+body.signup-page {
+    background-image: url('../images/signup-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+body.trip-page {
+    background-image: url('../images/trip-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+body.budget-page {
+    background-image: url('../images/budget-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+/* --- New background for My Trips page --- */
+body.my-trips-page {
+    background-image: url('../images/budget-bg'); /* Your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff; /* Text color for content */
+}
+
+/* --- Fallback and general body style --- */
+body {
+    background: #f6f8fb; /* fallback if image fails */
+    font-family: Arial, sans-serif;
+}
+
+/* --- Existing styles --- */
+.card {
+    border-radius: 1rem;
+}
+
+.btn {
+    border-radius: .8rem;
+}

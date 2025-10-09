@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Budget & Stays · Travel Planner{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h2 class="mb-4 text-center">Your Trips Overview</h2>
+
+  <div class="timeline-container" style="position: relative; max-width: 70%; margin: auto;">
+
+    <!-- Box 1: Trip Summary -->
+    <div id="box1" class="timeline-box left mb-5">
+      <div class="card shadow-lg p-4">
+        <h3 class="card-title mb-2">Trip Summary</h3>
+        <p class="mb-1"><strong>From:</strong> {{ trip.source }} → <strong>To:</strong> {{ trip.destination }}</p>
+        <p class="mb-1"><strong>Dates:</strong> {{ trip.start_date }} to {{ trip.end_date }} ({{ trip.days }} days)</p>
+        <p class="mb-1"><strong>Travellers:</strong> {{ trip.persons }}</p>
+        <p class="mb-1"><strong>Rooms Required:</strong> {{ est.rooms }}</p>
+        <p class="mb-0"><strong>Distance:</strong> {{ trip.distance }} km</p>
+      </div>
+    </div>
+
+    <!-- Box 2: Transport Options -->
+    <div id="box2" class="timeline-box right mb-5">
+      <div class="card shadow-lg p-4">
+        <h3 class="card-title mb-2">Transport Costs & Options</h3>
+        <ul class="list-group fs-6 mb-2">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Intercity Transport <span class="badge bg-primary rounded-pill">₹{{ est.transport }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Local Transport <span class="badge bg-primary rounded-pill">₹{{ est.local_transport }}</span>
+          </li>
+        </ul>
+        <h5 class="mb-1">Transport Options</h5>
+        <ul class="mb-0">
+          {% for t in transports %}
+            <li>{{ t.mode }} - {{ t.notes }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Box 3: Accommodation & Food -->
+    <div id="box3" class="timeline-box left mb-5">
+      <div class="card shadow-lg p-4">
+        <h3 class="card-title mb-2">Accommodation & Food</h3>
+        <ul class="list-group fs-6 mb-2">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Hotel Stay <span class="badge bg-primary rounded-pill">₹{{ est.hotel }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Food <span class="badge bg-primary rounded-pill">₹{{ est.food }}</span>
+          </li>
+        </ul>
+        <h5 class="mb-1">Suggested Hotels</h5>
+        <ul class="mb-0">
+          {% for h in hotels %}
+            <li>{{ h.name }} ({{ h.area }}) - Approx ₹{{ h.approx }}/night</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Box 4: Total Budget -->
+    <div id="box4" class="timeline-box right mb-5">
+      <div class="card shadow-lg p-4">
+        <h3 class="card-title mb-2">Total Estimated Budget</h3>
+        <ul class="list-group fs-6">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <strong>Total</strong> <span class="badge bg-success rounded-pill">₹{{ est.total }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="mt-4 d-flex gap-2 justify-content-center">
+    <a href="{{ url_for('my_trips') }}" class="btn btn-outline-secondary">← Back to My Trips</a>
+    <a href="{{ url_for('plan_trip') }}" class="btn btn-outline-primary">Plan Another Trip</a>
+  </div>
+</div>
+
+<style>
+/* Timeline boxes */
+.timeline-box { position: relative; width: 100%; }
+.timeline-box.left { margin-left: 0; }
+.timeline-box.right { margin-left: 38%; }
+
+/* Card styling */
+.card { border-radius: 1.5rem; padding: 25px; font-size: 1.2rem; width: 95%; margin: auto; transition: transform 0.3s; }
+.card:hover { transform: translateY(-5px); }
+.card-title { color: #0d6efd; font-size: 1.4rem; font-weight: 600; }
+.list-group-item { font-size: 1rem; }
+
+/* Rupees hover effect */
+.timeline-box .badge.bg-primary,
+.timeline-box .badge.bg-success {
+    transition: transform 0.3s, font-size 0.3s;
+    cursor: pointer;
+}
+.timeline-box .badge.bg-primary:hover,
+.timeline-box .badge.bg-success:hover {
+    transform: scale(1.6);
+    font-size: 1.3rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-box.right { margin-left: 0; }
+    .card { width: 100%; padding: 20px; font-size: 1.1rem; }
+}
+</style>
+{% endblock %}

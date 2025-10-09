@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Previous Trips{% endblock %}
+
+{% set page_class = 'my-trips-page' %}
+
+{% block content %}
+<style>
+  /* Full-page custom background for this page */
+  body.my-trips-page {
+      background-image: url("{{ url_for('static', filename='images/my_trips.jpg') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      color: black;
+  }
+
+  .trips-container {
+      max-width: 90%;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.5); /* semi-transparent */
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px); /* soft blur behind content */
+  }
+
+  h2 {
+      text-align: center;
+      color: #000;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+  }
+
+  .trip-card {
+      background-color: rgba(255,255,255,0.4); /* more transparent for background visibility */
+      border-radius: 1rem;
+      padding: 20px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      color: black;
+      backdrop-filter: blur(5px);
+  }
+
+  .trip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+
+  .trip-card a {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 600;
+      font-size: 1.2rem;
+  }
+
+  .trip-card a:hover {
+      text-decoration: underline;
+  }
+
+  .btn-back {
+      display: block;
+      width: 220px;
+      margin: 30px auto;
+  }
+</style>
+
+<div class="trips-container">
+    <!-- Clear All Trips button -->
+    <form action="{{ url_for('clear_trips') }}" method="post" class="mb-3 text-center">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete all trips?')">
+            Clear All Trips
+        </button>
+    </form>
+
+    <h2>Your Previous Trips</h2>
+
+    {% if trips %}
+      <div class="row g-4">
+        {% for trip in trips %}
+          <div class="col-md-6">
+            <div class="trip-card">
+              <h5>
+                  <a href="{{ url_for('view_trip', trip_id=trip.id) }}">
+                      {{ trip.source }} → {{ trip.destination }}
+                  </a>
+              </h5>
+              <p>
+                <strong>Persons:</strong> {{ trip.persons }}<br>
+                <strong>Days:</strong> {{ trip.days }}<br>
+                <strong>Start:</strong> {{ trip.start_date }}<br>
+                <strong>End:</strong> {{ trip.end_date }}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-black">No trips planned yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('plan_trip') }}" class="btn btn-primary btn-back">Plan a New Trip</a>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Login · Travel Planner{% endblock %}
+{% block content %}
+<div class="row align-items-center" style="min-height: 100vh;">
+  <div class="col-md-6 d-flex justify-content-start" style="margin-left: 0px;">
+    <div class="card shadow-lg p-5" 
+         style="min-height: 520px; border-radius: 1.5rem; max-width: 600px; width: 100%;">
+      <div class="card-body">
+        <h2 class="mb-4 text-primary fw-bold" style="letter-spacing: 1px; font-size: 2rem;">Welcome Back ✈️</h2>
+        <p class="text-muted mb-4" style="font-size: 1.2rem;">
+          Log in to continue planning your amazing trips.
+        </p>
+
+        <form method="POST" novalidate>
+          <div class="mb-4">
+            <label class="form-label fw-semibold" 
+                   style="font-size: 1.4rem; font-family: 'Poppins', sans-serif;">Username</label>
+            <input name="username" class="form-control form-control-lg" 
+                   placeholder="Enter your username" required
+                   style="font-size: 1.3rem; font-family: 'Poppins', sans-serif; height: 55px;">
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold" 
+                   style="font-size: 1.4rem; font-family: 'Poppins', sans-serif;">Password</label>
+            <input type="password" name="password" class="form-control form-control-lg" 
+                   placeholder="Enter your password" required
+                   style="font-size: 1.3rem; font-family: 'Poppins', sans-serif; height: 55px;">
+          </div>
+          <button class="btn btn-primary w-100 btn-lg" type="submit" 
+                  style="font-size: 1.2rem; font-weight: 600; padding: 14px;">
+            Log In
+          </button>
+        </form>
+
+        <p class="mt-5 mb-0 text-muted" style="font-size: 1.1rem;">
+          New here? <a href="{{ url_for('signup') }}" class="fw-bold text-decoration-none">Create an account</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

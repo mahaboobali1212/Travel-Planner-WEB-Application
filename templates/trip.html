@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Plan Trip · Travel Planner{% endblock %}
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="col-lg-8">
+    <div class="card shadow-lg p-5" style="border-radius: 1.5rem; max-width: 800px; margin: auto;">
+      <div class="card-body" style="font-family: 'Courier New', monospace;">
+        <h3 class="mb-4 text-center fw-bold" style="font-size: 2rem;">Plan Your Trip</h3>
+        <form method="POST" id="tripForm" novalidate>
+          <div class="row g-4">
+
+            <!-- Source state -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">Source</label>
+              <input list="indianStates" id="source" name="source"
+                     class="form-control form-control-lg"
+                     placeholder="Select source state"
+                     required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+
+            <!-- Destination state -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">Destination</label>
+              <input list="indianStates" id="destination" name="destination"
+                     class="form-control form-control-lg"
+                     placeholder="Select destination state"
+                     required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+
+            <!-- Start date -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">Start Date</label>
+              <input type="date" id="start_date" name="start_date"
+                     class="form-control form-control-lg" required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+
+            <!-- End date -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">End Date</label>
+              <input type="date" id="end_date" name="end_date"
+                     class="form-control form-control-lg" required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+
+            <!-- Number of persons -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">How many persons?</label>
+              <input type="number" name="persons" class="form-control form-control-lg"
+                     min="1" value="2" required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+
+            <!-- Auto-filled days -->
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="font-size: 1.4rem;">How many days?</label>
+              <input type="number" id="days" name="days"
+                     class="form-control form-control-lg"
+                     min="1" required
+                     style="font-size: 1.2rem; height: 60px;">
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 btn-lg mt-4" type="submit" 
+                  style="font-size: 1.3rem; font-weight: bold; padding: 16px; border-radius: 0.8rem;">
+            Get Budget & Suggestions
+          </button>
+        </form>
+
+        <!-- List of Indian States & Union Territories -->
+        <datalist id="indianStates">
+          <option value="Andhra Pradesh"><option value="Arunachal Pradesh">
+          <option value="Assam"><option value="Bihar"><option value="Chhattisgarh">
+          <option value="Goa"><option value="Gujarat"><option value="Haryana">
+          <option value="Himachal Pradesh"><option value="Jharkhand"><option value="Karnataka">
+          <option value="Kerala"><option value="Madhya Pradesh"><option value="Maharashtra">
+          <option value="Manipur"><option value="Meghalaya"><option value="Mizoram">
+          <option value="Nagaland"><option value="Odisha"><option value="Punjab">
+          <option value="Rajasthan"><option value="Sikkim"><option value="Tamil Nadu">
+          <option value="Telangana"><option value="Tripura"><option value="Uttar Pradesh">
+          <option value="Uttarakhand"><option value="West Bengal">
+          <option value="Andaman and Nicobar Islands"><option value="Chandigarh">
+          <option value="Dadra and Nagar Haveli and Daman and Diu"><option value="Delhi">
+          <option value="Jammu and Kashmir"><option value="Ladakh">
+          <option value="Lakshadweep"><option value="Puducherry">
+        </datalist>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for date validation and auto days -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const start = document.getElementById("start_date");
+  const end   = document.getElementById("end_date");
+  const days  = document.getElementById("days");
+
+  // Set minimum start date to today
+  const today = new Date().toISOString().split('T')[0];
+  start.min = today;
+
+  function updateConstraints() {
+    // Ensure end date cannot be before start date
+    end.min = start.value;
+
+    // Auto-calc days if both dates selected
+    if (start.value && end.value) {
+      const startDate = new Date(start.value);
+      const endDate   = new Date(end.value);
+      if (endDate >= startDate) {
+        const diffDays = Math.ceil((endDate - startDate) / (1000*60*60*24)) + 1;
+        days.value = diffDays;
+      }
+    }
+  }
+
+  start.addEventListener("change", updateConstraints);
+  end.addEventListener("change", updateConstraints);
+});
+</script>
+{% endblock %}
