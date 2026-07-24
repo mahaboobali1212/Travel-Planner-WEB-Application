@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set page_class = 'my-trips-page' %}
+{% block title %}Previous Trips{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Previous Trips</h2>
+
+    {% if trips %}
+        <div class="row g-4">
+            {% for trip in trips %}
+            <div class="col-md-6">
+                <div class="card p-4 shadow-lg">
+                    <h5>
+                        <a href="{{ url_for('view_trip', trip_id=trip.id) }}">
+                            {{ trip.source }} → {{ trip.destination }}
+                        </a>
+                    </h5>
+                    <p>
+                        <strong>Persons:</strong> {{ trip.persons }}<br>
+                        <strong>Days:</strong> {{ trip.days }}<br>
+                        <strong>Start:</strong> {{ trip.start_date }}<br>
+                        <strong>End:</strong> {{ trip.end_date }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-white">No trips planned yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
