@@ -2,143 +2,117 @@
 {% block title %}Sign Up · Travel Planner{% endblock %}
 {% block content %}
 <style>
-  body, html {
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 0;
-  }
-
   .signup-container {
     display: flex;
-    height: 100vh;
-    justify-content: flex-end; /* Align box to right */
+    min-height: calc(100vh - 140px);
+    justify-content: flex-end;
     align-items: center;
-    padding-right: 50px;
+    padding: 20px 50px 20px 0;
   }
 
-  .card {
-    width: 550px; /* Rectangle box */
-    padding: 70px 50px; /* Extra padding for big content */
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  .signup-card {
+    width: 480px;
+    padding: 35px 35px;
+    border-radius: 1.25rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     background: #ffffff;
   }
 
-  .card-body h3 {
-    font-size: 3rem; /* Extra big heading */
-    margin-bottom: 40px;
+  .signup-card h3 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 25px;
     color: #4e54c8;
     text-align: left;
   }
 
-  .form-label {
-    font-weight: 700;
-    font-size: 1.6rem; /* Big labels */
+  .signup-card .form-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 6px;
   }
 
-  .form-control {
-    height: 65px; /* Big input boxes */
-    font-size: 1.4rem;
-    padding: 15px 20px;
-    margin-bottom: 30px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
+  .signup-card .form-control {
+    height: 46px;
+    font-size: 1rem;
+    padding: 10px 15px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
     transition: all 0.3s ease;
   }
 
-  .form-control:focus {
+  .signup-card .form-control:focus {
     border-color: #4e54c8;
-    box-shadow: 0 0 15px rgba(78,84,200,0.3);
+    box-shadow: 0 0 10px rgba(78,84,200,0.25);
     outline: none;
   }
 
-  .btn-success {
+  .signup-card .btn-success {
     background: #4e54c8;
     border: none;
-    font-size: 1.6rem; /* Big button text */
-    padding: 18px;
-    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 30px;
     width: 100%;
     transition: all 0.3s ease;
   }
 
-  .btn-success:hover {
-    background: #8f94fb;
+  .signup-card .btn-success:hover {
+    background: #6c72e2;
   }
 
-  p {
-    font-size: 1.4rem; /* Big paragraph */
+  .signup-card p {
+    font-size: 0.95rem;
     text-align: left;
-    margin-top: 25px;
+    margin-top: 18px;
   }
 
-  a {
+  .signup-card a {
     color: #4e54c8;
     font-weight: 700;
     text-decoration: none;
   }
 
-  a:hover {
+  .signup-card a:hover {
     text-decoration: underline;
   }
 
   @media(max-width: 768px){
     .signup-container {
       justify-content: center;
-      padding-right: 20px;
+      padding: 15px 0;
     }
 
-    .card {
-      width: 90%;
-      padding: 50px 30px;
-    }
-
-    .card-body h3 {
-      font-size: 2.5rem;
-    }
-
-    .form-label {
-      font-size: 1.4rem;
-    }
-
-    .form-control {
-      height: 55px;
-      font-size: 1.2rem;
-    }
-
-    .btn-success {
-      font-size: 1.4rem;
-      padding: 16px;
-    }
-
-    p {
-      font-size: 1.2rem;
+    .signup-card {
+      width: 100%;
+      max-width: 440px;
+      padding: 25px 20px;
     }
   }
 </style>
 
 <div class="signup-container">
-  <div class="card shadow-sm">
+  <div class="signup-card shadow-sm">
     <div class="card-body">
-      <h3 class="mb-3">Create Account</h3>
+      <h3>Create Account</h3>
       <form method="POST" novalidate>
-        <div class="mb-3">
+        <div class="mb-2">
           <label class="form-label">Username</label>
-          <input name="username" class="form-control" required>
+          <input name="username" class="form-control" placeholder="Choose a username" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
           <label class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" required>
+          <input type="password" name="password" class="form-control" placeholder="Choose a password" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-2">
           <label class="form-label">Confirm Password</label>
-          <input type="password" name="confirm" class="form-control" required>
+          <input type="password" name="confirm" class="form-control" placeholder="Re-enter password" required>
         </div>
-        <button class="btn btn-success w-100" type="submit">Sign Up</button>
+        <button class="btn btn-success w-100 mt-2" type="submit">Sign Up</button>
       </form>
-      <p class="mt-3 mb-0">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+      <p class="mt-3 mb-0 text-muted">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
     </div>
   </div>
 </div>

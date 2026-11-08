@@ -1,70 +1,70 @@
 {% extends 'base.html' %}
 {% block title %}Plan Trip · Travel Planner{% endblock %}
 {% block content %}
-<div class="row justify-content-center align-items-center" style="min-height: 100vh;">
-  <div class="col-lg-8">
-    <div class="card shadow-lg p-5" style="border-radius: 1.5rem; max-width: 800px; margin: auto;">
+<div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 140px); padding: 15px 0;">
+  <div class="col-lg-7 col-md-9 col-12">
+    <div class="card shadow-lg p-3 p-md-4" style="border-radius: 1.25rem; max-width: 680px; margin: auto;">
       <div class="card-body" style="font-family: 'Courier New', monospace;">
-        <h3 class="mb-4 text-center fw-bold" style="font-size: 2rem;">Plan Your Trip</h3>
+        <h3 class="mb-3 text-center fw-bold" style="font-size: 1.7rem;">Plan Your Trip</h3>
         <form method="POST" id="tripForm" novalidate>
-          <div class="row g-4">
+          <div class="row g-3">
 
             <!-- Source state -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">Source</label>
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">Source</label>
               <input list="indianStates" id="source" name="source"
-                     class="form-control form-control-lg"
+                     class="form-control"
                      placeholder="Select source state"
                      required
-                     style="font-size: 1.2rem; height: 60px;">
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
 
             <!-- Destination state -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">Destination</label>
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">Destination</label>
               <input list="indianStates" id="destination" name="destination"
-                     class="form-control form-control-lg"
+                     class="form-control"
                      placeholder="Select destination state"
                      required
-                     style="font-size: 1.2rem; height: 60px;">
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
 
             <!-- Start date -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">Start Date</label>
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">Start Date</label>
               <input type="date" id="start_date" name="start_date"
-                     class="form-control form-control-lg" required
-                     style="font-size: 1.2rem; height: 60px;">
+                     class="form-control" required
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
 
             <!-- End date -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">End Date</label>
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">End Date</label>
               <input type="date" id="end_date" name="end_date"
-                     class="form-control form-control-lg" required
-                     style="font-size: 1.2rem; height: 60px;">
+                     class="form-control" required
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
 
             <!-- Number of persons -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">How many persons?</label>
-              <input type="number" name="persons" class="form-control form-control-lg"
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">How many persons?</label>
+              <input type="number" name="persons" class="form-control"
                      min="1" value="2" required
-                     style="font-size: 1.2rem; height: 60px;">
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
 
             <!-- Auto-filled days -->
             <div class="col-md-6">
-              <label class="form-label fw-bold" style="font-size: 1.4rem;">How many days?</label>
+              <label class="form-label fw-bold" style="font-size: 1.05rem;">How many days?</label>
               <input type="number" id="days" name="days"
-                     class="form-control form-control-lg"
+                     class="form-control"
                      min="1" required
-                     style="font-size: 1.2rem; height: 60px;">
+                     style="font-size: 0.95rem; height: 46px; border-radius: 0.6rem;">
             </div>
           </div>
 
-          <button class="btn btn-primary w-100 btn-lg mt-4" type="submit" 
-                  style="font-size: 1.3rem; font-weight: bold; padding: 16px; border-radius: 0.8rem;">
+          <button class="btn btn-primary w-100 btn-lg mt-3" type="submit" 
+                  style="font-size: 1.1rem; font-weight: bold; padding: 12px; border-radius: 0.8rem;">
             Get Budget & Suggestions
           </button>
         </form>
