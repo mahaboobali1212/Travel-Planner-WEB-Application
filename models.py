@@ -35,6 +35,7 @@ def init_db():
         conn.commit()
     finally:
         conn.close()
+    add_new_columns()
 
 def add_new_columns():
     conn = get_db()
